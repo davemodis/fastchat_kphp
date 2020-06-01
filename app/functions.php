@@ -7,6 +7,9 @@
 function textFilter($source, $opts = array('substr' => 25000)){
 	if(!$source) return '';
 
+	global $mysqli;
+	new_db_decl();
+
 	$source = stripslashes($source);
 
 	$find = array('/data:/i', '/about:/i', '/vbscript:/i', '/onclick/i', '/onload/i', '/onunload/i', '/onabort/i', '/onerror/i', '/onblur/i', '/onchange/i', '/onfocus/i', '/onreset/i', '/onsubmit/i', '/ondblclick/i', '/onkeydown/i', '/onkeypress/i', '/onkeyup/i', '/onmousedown/i', '/onmouseup/i', '/onmouseover/i', '/onmouseout/i', '/onselect/i', '/javascript/i');		
@@ -19,7 +22,7 @@ function textFilter($source, $opts = array('substr' => 25000)){
 	$source = str_replace("`", "&#96;", $source);
 	$source = preg_replace($find, $replace, $source);
 
-	return mysql_escape_string($source);
+	return mysqli_real_escape_string($mysqli, $source);
 }
 
 function myBr($source){
@@ -34,8 +37,8 @@ function myBr($source){
 function extend_auth($uid, $hash){
 	global $pmc;
 	$extend = 3600*24;
-	setcookie('uid', $uid, time()+$extend, '/', 'fastchat.su', NULL, TRUE);
-	setcookie('hash', $hash, time()+$extend, '/', 'fastchat.su', NULL, TRUE);
+	setcookie('uid', $uid, time()+$extend, '/', '.surfe.be', NULL, TRUE);
+	setcookie('hash', $hash, time()+$extend, '/', '.surfe.be', NULL, TRUE);
 	$pmc->set('session'.$uid.$hash, 'logged', $extend);
 }
 

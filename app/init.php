@@ -6,7 +6,7 @@
 
 include 'app/config.php';
 
-$pmc = new Memcache; 
+$pmc = new Memcached; 
 $pmc->addServer('localhost', PMC_PORT); 
 
 include 'app/lib/tpl.php';
@@ -16,7 +16,7 @@ include 'app/functions.php';
 $server_time = time();
 $online_time = $server_time-600;
 
-if($_COOKIE['uid'] > 0){
+if(isset($_COOKIE['uid']) && $_COOKIE['uid'] > 0){
 	$uid = intval($_COOKIE['uid']);
 	$hash = $_COOKIE['hash'];
 

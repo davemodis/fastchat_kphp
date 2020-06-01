@@ -79,7 +79,7 @@ switch($act){
 		$new_msg = get_new_counts($peer);
 		$im->set("history_action{$peer}#100", json_encode(array('peer' => $uid, 'name' => $uinfo['name'].' '.$uinfo['lname'], 'msg' => $msg, 'dialogs' => $new_msg['unicue'], 'cnt' => $new_msg['peers'][$uid], 'online' => 1)));
 
-		$queue = new Memcache;
+		$queue = new Memcached;
 		$queue->connect('127.0.0.1', QUE_PORT);
 		$queue->add("queue(notify{$peer})", json_encode(array('type' => 'msg_count', 'cnt' => $new_msg['all'])));
 
@@ -337,7 +337,7 @@ im.song.load();
 
 im.load_dialogs();";
 
-	$sel = intval($_GET['sel']);
+	$sel = isset($_GET['sel']) ? intval($_GET['sel']) : 0;
 	if($sel > 0) $initJS .= "\nim.open({$sel})";
 
 	$initJS .= "\n});";

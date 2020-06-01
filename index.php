@@ -8,6 +8,8 @@
 
 //$start = microtime(true);
 header('Content-type: text/html; charset=utf-8');
+ini_set('display_errors',1);
+error_reporting(E_WARNING);
 
 $logged = false;
 
@@ -15,7 +17,7 @@ include 'app/init.php';
 
 //if(substr($_SERVER['SCRIPT_NAME'], 0, 3) == '/id') $do = '/id';
 //else 
-$do = $_SERVER['SCRIPT_NAME'];
+$do = $_SERVER['REQUEST_URI'];
 
 $st_files = false;
 $initJS = '';

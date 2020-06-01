@@ -58,5 +58,5 @@ function tpl_make($name){
 		$tpl_sets = array();
 	}
 
-	$tpl_res[$name] .= $res;
+	$tpl_res[$name] = isset($tpl_res[$name]) ? $tpl_res[$name].$res : $res;
 }
