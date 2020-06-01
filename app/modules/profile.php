@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 	Author: Andrey Goglev
 	VK: https://vk.com/ru151
