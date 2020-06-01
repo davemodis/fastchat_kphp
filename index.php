@@ -4,6 +4,8 @@
 	VK: https://vk.com/ru151
 */
 
+// dave test
+
 //$start = microtime(true);
 header('Content-type: text/html; charset=utf-8');
 
