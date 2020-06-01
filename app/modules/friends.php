@@ -9,10 +9,10 @@ if($logged){
 
 	$st_files = array('al/friends.js', 'al/friends.css');
 
-	$hints = new Memcache;
+	$hints = new Memcached;
 	$hints->addServer('localhost', HIN_PORT);
 
-	$friend = new Memcache;
+	$friend = new Memcached;
 	$friend->addServer('localhost', FR1_PORT);
 
 	/*
@@ -66,7 +66,7 @@ if($logged){
 
 					mysql_query("UPDATE `users` SET friends_request = '{$num}' WHERE uid = '{$friend_id}'");
 
-					$queue = new Memcache;
+					$queue = new Memcached;
 					$queue->connect('127.0.0.1', QUE_PORT);
 					$queue->add("queue(notify{$friend_id})", json_encode(array('type' => 'req_count', 'cnt' => $num)));
 
@@ -103,7 +103,7 @@ if($logged){
 
 				mysql_query("UPDATE `users` SET friends_request = '{$num}' WHERE uid = '{$uid}'");
 
-				$queue = new Memcache;
+				$queue = new Memcached;
 				$queue->connect('127.0.0.1', QUE_PORT);
 				$queue->add("queue(notify{$uid})", json_encode(array('type' => 'req_count', 'cnt' => $num)));
 			}
@@ -125,7 +125,7 @@ if($logged){
 
 				mysql_query("UPDATE `users` SET friends_request = '{$num}' WHERE uid = '{$uid}'");
 
-				$queue = new Memcache;
+				$queue = new Memcached;
 				$queue->connect('127.0.0.1', QUE_PORT);
 				$queue->add("queue(notify{$uid})", json_encode(array('type' => 'req_count', 'cnt' => $num)));
 			}

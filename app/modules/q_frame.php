@@ -6,7 +6,7 @@
 
 if(!$uid) die('no_log');
 
-$queue = new Memcache;
+$queue = new Memcached;
 $queue->connect('127.0.0.1', QUE_PORT);
 
 $ip = ip2long($_SERVER['HTTP_X_REAL_IP']);

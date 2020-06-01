@@ -81,7 +81,7 @@ switch($do){
 	break;
 
 	case '/test':
-		$queue = new Memcache;
+		$queue = new Memcached;
 		$queue->connect('127.0.0.1', QUE_PORT);
 		$queue->add("queue(notify1)", json_encode(array('type' => isset($_GET['msg']) ? 'msg_count' : 'req_count', 'cnt' => $_GET['n'])));
 		exit;

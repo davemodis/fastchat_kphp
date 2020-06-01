@@ -25,7 +25,7 @@ switch($act){
 		$res = '';
 		if($sql_){
 
-			$friend = new Memcache;
+			$friend = new Memcached;
 			$friend->addServer('localhost', FR1_PORT);
 
 			foreach($sql_ as $row){

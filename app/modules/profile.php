@@ -20,7 +20,7 @@ if(!$row['uid']){
 }else{
 
 	if($row['photo']){
-		$photo = new Memcache; 
+		$photo = new Memcached; 
 		$photo->connect('127.0.0.1', 11233);
 
 		//$photos = $photo->get("photo{$id},{$row['photo']}(id,locationps)");

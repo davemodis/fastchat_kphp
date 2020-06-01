@@ -4,7 +4,7 @@
 	VK: https://vk.com/ru151
 */
 
-$im = new Memcache;
+$im = new Memcached;
 $im->connect("localhost", IM_PORT);
 
 $act = isset($_GET['act']) ? $_GET['act'] : (isset($_POST['act']) ? $_POST['act'] : false);
@@ -53,7 +53,7 @@ switch($act){
 
 		if(!$msg) echo json_encode(array('err' => 1));
 
-		$bayes = new Memcache;
+		$bayes = new Memcached;
 		$bayes->addServer('localhost', BAY_PORT);
 
 		$random_tag = mt_rand(1111111, 9999999);
@@ -188,7 +188,7 @@ switch($act){
 			}
 			$im->set("history_action{$peer}#51", "{$uid},1");
 
-			$queue = new Memcache;
+			$queue = new Memcached;
 			$queue->connect('127.0.0.1', QUE_PORT);
 			$queue->add("queue(notify{$uid})", json_encode(array('type' => 'msg_count', 'cnt' => $new_msg['all'])));
 

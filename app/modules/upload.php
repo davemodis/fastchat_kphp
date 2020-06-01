@@ -24,7 +24,7 @@ switch($act){
 			exit;
 		}
 
-		$storage = new Memcache; 
+		$storage = new Memcached; 
 		$storage->connect('127.0.0.1', 11033); 
 
 		switch($file['type']){
@@ -43,7 +43,7 @@ switch($act){
   			$secret = $a[0]; 
   			$local_id = $a[1];
 
-  			$photo = new Memcache; 
+  			$photo = new Memcached; 
 			$photo->connect('127.0.0.1', 11233);
 
 			$pid = $photo->get("new_photo{$uid},-1"); 

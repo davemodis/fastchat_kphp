@@ -9,7 +9,7 @@ if(!$logged){
 	else die('<h1>no logged :( </h1>');
 }
 
-$im = new Memcache;
+$im = new Memcached;
 $im->connect("localhost", IM_PORT);
 
 
